@@ -1,0 +1,78 @@
+/* Global styles */
+body {
+  font-family: 'Work Sans', sans-serif;
+  background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+  color: #333;
+  text-align: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Quote display box */
+.quote-box {
+  margin: 1rem auto;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  max-width: 600px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+}
+
+/* Buttons */
+button {
+  background-color: #f8b500;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: 1px solid #222; /* Thin black border */
+  border-radius: 30px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(248, 181, 0, 0.3);
+}
+
+button:hover {
+  background-color: #f6a700;
+  box-shadow: 0 6px 16px rgba(248, 181, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+
+/* Input fields */
+input {
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  width: 80%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+  border-color: #f8b500;
+  outline: none;
+  box-shadow: 0 0 8px rgba(248, 181, 0, 0.4);
+}
+
+/* Form section glassy card */
+.form-section {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 2rem auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}

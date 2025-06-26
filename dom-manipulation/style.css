@@ -76,3 +76,18 @@ input:focus {
   margin: 2rem auto;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
+
+.filter-section,
+.json-section {
+  margin-top: 2rem;
+}
+
+.json-section input[type="file"] {
+  margin-top: 0.5rem;
+}
+
+select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}

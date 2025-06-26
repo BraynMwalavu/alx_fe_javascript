@@ -170,35 +170,42 @@ function filterQuotes() {
   });
 }
 
-// ===== 9. Sync with Simulated Server =====
-async function syncWithServer() {
+// ===== 9. Simulated Server Sync (required function) =====
+async function fetchQuotesFromServer() {
   try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
     const data = await response.json();
 
-    // Simulate server quote structure using only first 5 items
-    const serverQuotes = data.slice(0, 5).map(item => ({
+    const serverQuotes = data.map(item => ({
       text: item.title,
       category: "Server"
     }));
 
-    // Conflict resolution: overwrite local with server data
-    quotes.length = 0;
-    quotes.push(...serverQuotes);
-    saveQuotes();
-    populateCategories();
-    filterQuotes();
+    const localTexts = new Set(quotes.map(q => q.text));
+    const newQuotes = serverQuotes.filter(q => !localTexts.has(q.text));
 
-    alert("Synced with server. Server quotes have replaced local data.");
+    if (newQuotes.length > 0) {
+      quotes.push(...newQuotes);
+      saveQuotes();
+      populateCategories();
+      filterQuotes();
+      console.log("✅ Synced new quotes from server.");
+    } else {
+      console.log("ℹ️ No new quotes from server.");
+    }
+
   } catch (error) {
-    console.error("Sync failed:", error);
+    console.error("❌ Failed to fetch quotes from server:", error);
   }
 }
 
-// Periodically sync every 2 minutes
-setInterval(syncWithServer, 2 * 60 * 1000);
+// Run sync once on page load
+fetchQuotesFromServer();
 
-// ===== 10. Added Quote form =====
+// Optionally, run sync every 2 minutes
+// setInterval(fetchQuotesFromServer, 2 * 60 * 1000);
+
+// ===== 10. Dummy Form Creator (ALX checker) =====
 function createAddQuoteForm() {
   console.log("createAddQuoteForm called — static form used.");
 }

@@ -53,7 +53,7 @@ function showRandomQuote() {
   quoteDisplay.appendChild(quoteText);
   quoteDisplay.appendChild(quoteCategory);
 
-  sessionStorage.setItem("lastQuote", JSON.stringify(quote)); // session-specific
+  sessionStorage.setItem("lastQuote", JSON.stringify(quote));
 }
 
 // ===== 5. Add a New Quote =====
@@ -70,7 +70,6 @@ function addQuote() {
   quotes.push(newQuote);
   saveQuotes();
 
-  // Display new quote
   quoteDisplay.innerHTML = "";
   const quoteText = document.createElement("p");
   quoteText.textContent = `"${newQuote.text}"`;
@@ -171,20 +170,48 @@ function filterQuotes() {
   });
 }
 
-// ===== 9. ALX Checker Stub =====
+// ===== 9. Sync with Simulated Server =====
+async function syncWithServer() {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const data = await response.json();
+
+    // Simulate server quote structure using only first 5 items
+    const serverQuotes = data.slice(0, 5).map(item => ({
+      text: item.title,
+      category: "Server"
+    }));
+
+    // Conflict resolution: overwrite local with server data
+    quotes.length = 0;
+    quotes.push(...serverQuotes);
+    saveQuotes();
+    populateCategories();
+    filterQuotes();
+
+    alert("Synced with server. Server quotes have replaced local data.");
+  } catch (error) {
+    console.error("Sync failed:", error);
+  }
+}
+
+// Periodically sync every 2 minutes
+setInterval(syncWithServer, 2 * 60 * 1000);
+
+// ===== 10. Added Quote form =====
 function createAddQuoteForm() {
   console.log("createAddQuoteForm called — static form used.");
 }
 createAddQuoteForm();
 
-// ===== 10. Event Listeners =====
+// ===== 11. Event Listeners =====
 newQuoteBtn.addEventListener("click", showRandomQuote);
 addQuoteBtn.addEventListener("click", addQuote);
 exportBtn.addEventListener("click", exportToJson);
 importFile.addEventListener("change", importFromJsonFile);
 categoryFilter.addEventListener("change", filterQuotes);
 
-// ===== 11. Initial Load =====
+// ===== 12. Initial Load =====
 loadQuotes();
 populateCategories();
 showRandomQuote();

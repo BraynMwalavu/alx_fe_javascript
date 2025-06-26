@@ -70,6 +70,8 @@ function addQuote() {
   quotes.push(newQuote);
   saveQuotes();
 
+  postQuoteToServer(newQuote); // Simulate POST
+
   quoteDisplay.innerHTML = "";
   const quoteText = document.createElement("p");
   quoteText.textContent = `"${newQuote.text}"`;
@@ -170,7 +172,7 @@ function filterQuotes() {
   });
 }
 
-// ===== 9. Simulated Server Sync (required function) =====
+// ===== 9. Syncing & Server Communication =====
 async function fetchQuotesFromServer() {
   try {
     const response = await fetch("https://jsonplaceholder.typicode.com/posts?_limit=5");
@@ -186,26 +188,40 @@ async function fetchQuotesFromServer() {
 
     if (newQuotes.length > 0) {
       quotes.push(...newQuotes);
+      alert("📡 Server quotes added to local collection (conflicts resolved).");
       saveQuotes();
       populateCategories();
       filterQuotes();
-      console.log("✅ Synced new quotes from server.");
-    } else {
-      console.log("ℹ️ No new quotes from server.");
     }
-
-  } catch (error) {
-    console.error("❌ Failed to fetch quotes from server:", error);
+  } catch (err) {
+    console.error("Failed to fetch from server:", err);
   }
 }
 
-// Run sync once on page load
-fetchQuotesFromServer();
+async function postQuoteToServer(quote) {
+  try {
+    await fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(quote)
+    });
+    console.log("✅ Quote posted to server");
+  } catch (error) {
+    console.error("❌ Failed to post quote:", error);
+  }
+}
 
-// Optionally, run sync every 2 minutes
-// setInterval(fetchQuotesFromServer, 2 * 60 * 1000);
+// Syncing wrapper
+function syncQuotes() {
+  fetchQuotesFromServer();
+}
 
-// ===== 10. Dummy Form Creator (ALX checker) =====
+// Periodically sync every 2 minutes
+setInterval(syncQuotes, 2 * 60 * 1000);
+
+// ===== 10. Form Stub =====
 function createAddQuoteForm() {
   console.log("createAddQuoteForm called — static form used.");
 }
@@ -222,3 +238,4 @@ categoryFilter.addEventListener("change", filterQuotes);
 loadQuotes();
 populateCategories();
 showRandomQuote();
+syncQuotes(); // Initial fetch from server

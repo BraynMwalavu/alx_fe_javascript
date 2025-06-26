@@ -70,7 +70,7 @@ function addQuote() {
   quotes.push(newQuote);
   saveQuotes();
 
-  postQuoteToServer(newQuote); // Simulate POST
+  postQuoteToServer(newQuote);
 
   quoteDisplay.innerHTML = "";
   const quoteText = document.createElement("p");
@@ -188,11 +188,14 @@ async function fetchQuotesFromServer() {
 
     if (newQuotes.length > 0) {
       quotes.push(...newQuotes);
-      alert("📡 Server quotes added to local collection (conflicts resolved).");
       saveQuotes();
       populateCategories();
       filterQuotes();
     }
+
+    // Alert 
+    alert("Quotes synced with server!");
+
   } catch (err) {
     console.error("Failed to fetch from server:", err);
   }

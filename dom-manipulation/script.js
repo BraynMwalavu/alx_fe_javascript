@@ -13,7 +13,7 @@ const newQuoteBtn = document.getElementById("newQuote");
 const addQuoteBtn = document.getElementById("addQuoteBtn");
 
 // ===== 3. Display a Random Quote =====
-function displayRandomQuote() {
+function showRandomQuote() {
   if (quotes.length === 0) {
     quoteDisplay.innerHTML = "<p>No quotes available. Add one below!</p>";
     return;
@@ -45,7 +45,7 @@ function addQuote() {
 
   quotes.push(newQuote);
 
-  // Optionally display the new quote
+  // Display the new quote
   quoteDisplay.innerHTML = `
     <p><em>"${newQuote.text}"</em></p>
     <p><strong>– ${newQuote.category}</strong></p>
@@ -56,8 +56,8 @@ function addQuote() {
 }
 
 // ===== 5. Event Listeners =====
-newQuoteBtn.addEventListener("click", displayRandomQuote);
+newQuoteBtn.addEventListener("click", showRandomQuote);
 addQuoteBtn.addEventListener("click", addQuote);
 
-// ===== 6. Optional: Display One Quote on Load =====
-displayRandomQuote();
+// ===== 6. Optional: Show one quote on page load
+showRandomQuote();

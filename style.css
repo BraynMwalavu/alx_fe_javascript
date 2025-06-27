@@ -1,4 +1,4 @@
-/* Global styles */
+/* ===== Global Styles ===== */
 body {
   font-family: 'Work Sans', sans-serif;
   background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
@@ -6,22 +6,70 @@ body {
   text-align: center;
   padding: 2rem;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
-/* Quote display box */
+/* ===== Utility Card Layout ===== */
+.card {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Heading ===== */
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+/* ===== Quote Display Box ===== */
 .quote-box {
   margin: 1rem auto;
   padding: 1rem;
-  border: 1px solid #ddd;
-  max-width: 600px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
   background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
 }
 
-/* Buttons */
+.quote-text {
+  font-size: 1.3rem;
+  font-style: italic;
+  margin-bottom: 0.75rem;
+  color: #222;
+  line-height: 1.6;
+}
+
+.quote-author {
+  font-weight: bold;
+  color: #d47a37;
+  margin-bottom: 0.5rem;
+}
+
+/* ===== NEW: Category Tags ===== */
+.quote-tags {
+  margin-top: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #d47a37;
+  color: white;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+  margin: 0 0.25rem 0.3rem 0;
+  border-radius: 20px;
+  font-weight: 500;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== Buttons ===== */
 button {
   background-color: #f8b500;
   color: #fff;
@@ -45,7 +93,7 @@ button:active {
   transform: scale(0.97);
 }
 
-/* Input fields */
+/* ===== Input Fields ===== */
 input {
   padding: 0.75rem;
   margin: 0.5rem 0;
@@ -64,7 +112,7 @@ input:focus {
   box-shadow: 0 0 8px rgba(248, 181, 0, 0.4);
 }
 
-/* Select dropdown */
+/* ===== Select Dropdown ===== */
 select {
   padding: 0.6rem 1rem;
   font-size: 1rem;
@@ -76,19 +124,21 @@ select {
   width: 80%;
 }
 
-/* Form section glassy card */
-.form-section {
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  padding: 2rem;
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 2rem auto;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+/* ===== Sync Status Message ===== */
+#syncStatus {
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 0 auto 1.5rem auto;
+  color: #1d702f;
+  transition: opacity 0.3s ease-in-out;
 }
 
-/* Filter & JSON Section */
+/* ===== Section Containers ===== */
 .filter-section,
 .json-section {
   margin: 2rem auto;
@@ -101,22 +151,11 @@ select {
   margin-top: 0.5rem;
 }
 
-/* Sync Status */
-#syncStatus {
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 0.5rem 1rem;
-  background-color: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(5px);
-  border-radius: 8px;
-  max-width: 500px;
-  margin: 0 auto 1.5rem auto;
-  color: #1d702f;
-}
-
-/* Responsive tweaks */
+/* Responsive Tweaks */
 @media (max-width: 600px) {
-  button, input, select {
+  button,
+  input,
+  select {
     width: 100%;
     font-size: 1rem;
   }

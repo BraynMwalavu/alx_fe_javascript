@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dynamic Quote Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <h1>Dynamic Quote Generator</h1>
+
+  <!-- Sync Status Display -->
+  <div id="syncStatus" class="card" style="color: green; font-weight: bold; text-align: center; display: none;">
+    <!-- Dynamically filled by JS -->
+  </div>
+
+  <!-- Filter Section -->
+  <div class="filter-section card">
+    <label for="categoryFilter"><strong>Filter by Category:</strong></label><br />
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+    </select>
+
+    <br /><br />
+
+    <label for="authorFilter"><strong>Filter by Author:</strong></label><br />
+    <select id="authorFilter">
+      <option value="all">All Authors</option>
+    </select>
+  </div>
+
+  <!-- Quote Display -->
+  <div id="quoteDisplay" class="quote-box card">
+    <p>Select a category or author, or add your own quote!</p>
+  </div>
+
+  <!-- Quote Buttons -->
+  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <button id="newQuote">Show New Quote</button>
+    <button id="syncNowBtn">Sync Now</button>
+  </div>
+
+  <!-- Add Quote Form -->
+  <div class="form-section card">
+    <h3>Add a New Quote</h3>
+
+    <label for="quoteText">Quote Text</label><br />
+    <input id="quoteText" type="text" placeholder="💬 e.g. Life is beautiful" /><br />
+
+    <label for="quoteAuthor">Quote Author</label><br />
+    <input id="quoteAuthor" type="text" placeholder="👤 e.g. Maya Angelou" /><br />
+
+    <label for="quoteCategory">Quote Category</label><br />
+    <input id="quoteCategory" type="text" placeholder="🏷️ e.g. Inspiration, Growth" /><br />
+
+    <button id="addQuoteBtn">Add Quote</button>
+  </div>
+
+  <!-- JSON Import/Export -->
+  <div class="json-section card">
+    <h4>Import/Export Quotes</h4>
+    <button id="exportBtn">Export Quotes</button><br /><br />
+    <input type="file" id="importFile" accept=".json" />
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
